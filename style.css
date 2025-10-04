@@ -1,0 +1,142 @@
+/* Import Google Fonts for a stylish look */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+    
+    /* NEW: PARTY MODE BACKGROUND */
+    background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%); /* កំណត់ពណ៌ដំបូង */
+    animation: gradientShift 15s ease infinite; /* ធ្វើឲ្យពណ៌ផ្លាស់ប្តូរ */
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%); }
+    50% { background-position: 100% 50%; background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%); }
+    100% { background-position: 0% 50%; background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%); }
+}
+
+/* --- FIREWORKS (ផ្ទៃខាងក្រោយកាំជ្រួច) --- */
+#fireworks-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1; 
+    pointer-events: none;
+    opacity: 0; 
+    transition: opacity 0.5s;
+}
+.firework-active #fireworks-container {
+    opacity: 1;
+}
+
+/* --- BOOK CONTAINER --- */
+.book-container {
+    perspective: 1500px;
+    z-index: 10;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* ស្រមោលដិតជាងមុន */
+}
+
+#book {
+    width: 350px; 
+    height: 500px;
+    position: relative;
+    transform-style: preserve-3d;
+    cursor: pointer;
+}
+
+.page {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    transform-origin: left;
+    transition: transform 0.8s cubic-bezier(0.4, 0.0, 0.2, 1); 
+    backface-visibility: hidden;
+    background: #ffffff;
+    border: 5px solid #ff4d4d; /* NEW: គែមពណ៌ក្រហមឆ្អៅ (Vibrant Red) */
+    box-sizing: border-box;
+    box-shadow: 0 0 15px rgba(255, 77, 77, 0.7); /* NEW: ស្រមោលក្រហមរស់រវើក */
+}
+
+/* Page Stacking Order */
+#p1 { z-index: 6; }
+#p2 { z-index: 5; }
+#p3 { z-index: 4; }
+#p4 { z-index: 3; }
+#p5 { z-index: 2; }
+#p6 { z-index: 1; }
+
+/* Styles for Page Content */
+.page-content {
+    padding: 30px;
+    text-align: center;
+    color: #333;
+}
+
+/* Cover Page Styles */
+.cover-page {
+    background-color: #ffe066; /* NEW: ផ្ទៃខាងក្រោយលឿងឆ្អៅ */
+}
+.title-en { 
+    font-family: 'Playfair Display', serif; 
+    color: #cc0000; /* NEW: ពណ៌ក្រហមដិត */
+    font-size: 2.5em; 
+    margin-top: 100px; 
+    text-shadow: 2px 2px #fff;
+}
+.date-en {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8em;
+    color: #008080; /* NEW: ពណ៌បៃតងទឹកសមុទ្រដិត */
+    margin: 10px 0 30px 0;
+    font-weight: bold;
+}
+.subtitle-en { color: #555; font-style: italic; font-size: 1em; font-weight: bold;}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+    40% {transform: translateY(-8px);}
+    60% {transform: translateY(-4px);}
+}
+.bounce-text {
+    animation: bounce 1.5s infinite;
+}
+
+/* ស្ទាយសម្រាប់វីដេអូ */
+.video-page {
+    padding: 20px;
+}
+.flip-video {
+    width: 90%;
+    height: 300px; 
+    margin: 20px auto 15px auto;
+    display: block;
+    object-fit: cover;
+    border: 5px solid #00c4cc; /* NEW: គែមពណ៌ខៀវរស់រវើក */
+    box-shadow: 0 0 20px rgba(0, 196, 204, 0.7); /* NEW: ស្រមោលខៀវ */
+}
+.simple-wish {
+    font-size: 1.1em;
+    color: #4b0082; /* NEW: ពណ៌ស្វាយដិត */
+    margin-top: 15px;
+    font-weight: 600;
+}
+.signature-en {
+    margin-top: 30px;
+    font-style: italic;
+    color: #cc0000; /* NEW: ពណ៌ក្រហមដិត */
+    font-size: 1.2em;
+}
+
+/* CSS for Page Turning */
+.turned-page {
+    transform: rotateY(-180deg);
+}
